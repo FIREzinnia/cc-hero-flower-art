@@ -4,9 +4,13 @@
     "shortName": "senick",
     "colors": {
         "pink": "#FCD7BE",
+        "pink1": "#936545",
         "red": "#A54300",
         "blue": "#827D74",
-        "purple": null,
+        "blue1": "#5B574F",
+        "blue2": "#B7B1A7",
+        "purple": "#1D2226",
+        "purple2": "#654127",
         "yellow": "#F29600",
         "white": "#FFFFFF"
     },

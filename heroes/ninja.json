@@ -3,10 +3,15 @@
     "longName": "Amara Arrowhead",
     "shortName": "amara",
     "colors": {
-        "pink": "#EDB591",
+        "pink": "#FFCDAB",
+        "pink1": "#DDA27A",
         "red": null,
-        "blue": "#464B50",
-        "purple": "#998887",
+        "blue": "#42474C",
+        "blue1": "#30353A",
+        "blue2": "#5F666B",
+        "purple": "#8C7A79",
+        "purple1": "#D1C3C3",
+        "purple2": "#6F5D5B",
         "yellow": null,
         "white": "#FFFFFF"
     },

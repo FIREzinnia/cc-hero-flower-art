@@ -4,9 +4,11 @@
     "shortName": "omarn",
     "colors": {
         "pink": "#FFD1B2",
+        "pink2": "#DDA27A",
         "red": null,
-        "blue": "#2B2F33",
-        "purple": "#706161",
+        "blue": "#B8A6A6",
+        "blue1": "#282C2F",
+        "purple": "#423A3A",
         "yellow": null,
         "white": "#FFFFFF"
     },
