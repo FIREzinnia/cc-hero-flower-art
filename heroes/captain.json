@@ -4,9 +4,12 @@
     "shortName": "anya",
     "colors": {
         "pink": "#FFCDAB",
+        "pink1": "#DCA179",
         "red": "#CA5809",
         "blue": "#A5C6CA",
+        "blue1": "#607879",
         "purple": "#1D2226",
+        "purple1": "#4F4843",
         "yellow": "#2C8C2C",
         "white": "#FFFFFF"
     },
