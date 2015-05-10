@@ -29,7 +29,7 @@
 
 `build` generates the many lined code for drawing the art.
 
-- hero-type: a hero type. look in `heros/`
+- hero-type: a hero type. look in `heroes/`
 - `--step`: scale down by an integer value
 - `--trim-top`: trim top by how much
 - `--trim-bottom`: trim bottom by how much

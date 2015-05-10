@@ -19,7 +19,7 @@ if (!validateHero(h)) {
     process.exit(1);
 }
 
-var hero = require(path.join(__dirname, '/heros', h + '.json'));
+var hero = require(path.join(__dirname, '/heroes', h + '.json'));
 
 pixels(hero, opts, function (err, colors) {
     for (var i = 0, l = colors.length; i < l; i++) {

@@ -5,26 +5,26 @@ var template = require('lodash.template');
 var pixels = require('./lib/pixels');
 var validateHero = require('./lib/validate-hero');
 var argv = require('minimist')(process.argv.slice(2));
-var heros = argv._;
+var heroes = argv._;
 var opts = {
     step: argv.step || 1,
     trimTop: argv['trim-top'] || null,
     trimBottom: argv['trim-bottom'] || null
 };
 
-heros = heros.filter(validateHero);
+heroes = heroes.filter(validateHero);
 
-if (!heros.length) {
+if (!heroes.length) {
     console.error('no hero');
     process.exit(1);
 }
 
 // do something
 
-// for now use heros[0]
+// for now use heroes[0]
 
-var hero = heros[0];
-hero = require(path.join(__dirname, '/heros', hero + '.json'));
+var hero = heroes[0];
+hero = require(path.join(__dirname, '/heroes', hero + '.json'));
 
 var moveXY = template('this.moveXY(${x},${y});\n');
 var toggleFlowers = template('this.toggleFlowers(${toggle});\n');
