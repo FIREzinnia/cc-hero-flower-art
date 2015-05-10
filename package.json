@@ -1,5 +1,5 @@
 {
-  "name": "codecombat-hero-flower-art",
+  "name": "cc-hero-flower-art",
   "version": "0.0.0",
   "description": "CodeCombat Hero Flower Art",
   "scripts": {
@@ -17,5 +17,10 @@
     "minimist": "^1.1.1",
     "nearest-color": "^0.4.0",
     "rgb-hex": "^1.0.0"
-  }
+  },
+  "repository": "trotod/cc-hero-flower-art",
+  "bugs": {
+    "url": "https://github.com/trotod/cc-hero-flower-art/issues"
+  },
+  "homepage": "https://github.com/trotod/cc-hero-flower-art#readme"
 }
