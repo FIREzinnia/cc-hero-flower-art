@@ -1,0 +1,75 @@
+#!/usr/bin/env node
+
+var path = require('path');
+var template = require('lodash.template');
+var pixels = require('./lib/pixels');
+var validateHero = require('./lib/validate-hero');
+var argv = require('minimist')(process.argv.slice(2));
+var heros = argv._;
+var opts = {
+    step: argv.step || 1,
+    trimTop: argv['trim-top'] || null,
+    trimBottom: argv['trim-bottom'] || null
+};
+
+heros = heros.filter(validateHero);
+
+if (!heros.length) {
+    console.error('no hero');
+    process.exit(1);
+}
+
+// do something
+
+// for now use heros[0]
+
+var hero = heros[0];
+hero = require(path.join(__dirname, '/heros', hero + '.json'));
+
+var moveXY = template('this.moveXY(${x},${y});\n');
+var toggleFlowers = template('this.toggleFlowers(${toggle});\n');
+var setFlowerColor = template('this.setFlowerColor(\'${color}\');\n');
+
+pixels(hero, opts, function (err, colors) {
+    if (err) return console.error(err);
+
+    var trimed = (opts.trimTop || 0) + (opts.trimBottom || 0);
+    var x = 85;
+    var y = 70;
+    var toggle = false;
+    var lastColor;
+    process.stdout.write(toggleFlowers({ toggle: toggle }));
+    //process.stdout.write(moveXY({ x: x, y: y }));
+    for (var i = 0, gLen = colors.length; i < gLen; i++) {
+        var xFactor = (i % 2 === 0 ? 1 : -1);
+        var xStep = 0.5 * xFactor;
+        for (var j = 0, rLen = colors[i].length; j < rLen; j++) {
+            var color = colors[i][xFactor < 0 ? colors[i].length - j : j];
+            x += xStep;
+            if (color) {
+                if (!toggle) {
+                    process.stdout.write(moveXY({ x: x, y: y }));
+                    toggle = true;
+                    process.stdout.write(toggleFlowers({ toggle: toggle }));
+                }
+                if (!lastColor || lastColor !== color) {
+                    process.stdout.write(moveXY({ x: x, y: y }));
+                    process.stdout.write(setFlowerColor({ color: color }));
+                    lastColor = color;
+                }
+            } else if (!color) {
+                if (toggle) {
+                    process.stdout.write(moveXY({ x: x, y: y }));
+                    toggle = false;
+                    process.stdout.write(toggleFlowers({ toggle: toggle }));
+                }
+            }
+        }
+        y -= 0.5;
+        if (toggle) {
+            toggle = false;
+            process.stdout.write(toggleFlowers({ toggle: toggle }));
+            process.stdout.write(moveXY({ x: x, y: y }));
+        }
+    }
+});

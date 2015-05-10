@@ -1,0 +1,46 @@
+#!/usr/bin/env node
+
+// better to use img2txt(1) from libcaca, but whatever
+
+var argv = require('minimist')(process.argv.slice(2));
+var h = argv._[0];
+var opts = {
+    step: argv.step || null,
+    trimTop: argv['trim-top'] || null,
+    trimBottom: argv['trim-bottom'] || null
+};
+var chalk = require('chalk');
+var path = require('path');
+var pixels = require('./lib/pixels');
+var validateHero = require('./lib/validate-hero');
+
+if (!validateHero(h)) {
+    console.error(h + ' is not a valid hero.');
+    process.exit(1);
+}
+
+var hero = require(path.join(__dirname, '/heros', h + '.json'));
+
+pixels(hero, opts, function (err, colors) {
+    for (var i = 0, l = colors.length; i < l; i++) {
+        for (var j = 0, k = colors[i].length; j < k; j++) {
+            var color = colors[i][j];
+            var theme;
+            switch (color) {
+                case null:
+                    theme = chalk.black;
+                    break;
+                case 'pink':
+                    theme = chalk.bold.red;
+                    break;
+                case 'purple':
+                    theme = chalk.magenta;
+                    break;
+                default:
+                    theme = chalk[color];
+            }
+            process.stdout.write(theme('@'));
+        }
+        process.stdout.write('\n');
+    }
+});
